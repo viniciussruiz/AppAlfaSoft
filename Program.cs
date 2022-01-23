@@ -45,7 +45,8 @@ void CallApi(string nome)
 
     var url = client.BaseAddress + nome + "/";
     Console.WriteLine("Calling Url: " + url);
-
+    
+    sw.Start();
     var response = client.GetAsync(nome + "/").Result;
     var resp = response.Content.ReadAsStringAsync().Result;
 
