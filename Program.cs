@@ -6,6 +6,13 @@ Console.Write("Enter the file path: ");
 
 string path = Console.ReadLine();
 
+while (string.IsNullOrEmpty(path))
+{
+    Console.WriteLine("Path not informed!");
+    Console.Write("Enter the file path: ");
+    path = Console.ReadLine();
+}
+
 string[] names = File.ReadAllLines(path);
 CustomStopwatch sw = new();
 
