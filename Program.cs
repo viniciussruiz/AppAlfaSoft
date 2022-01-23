@@ -2,6 +2,13 @@
 using AppAlfaSoft;
 using System.Net.Http.Headers;
 
+Mutex mutex = new Mutex(true, name: "{AppAlfaSoft}");
+
+if (!mutex.WaitOne(TimeSpan.Zero, true))
+{
+    Thread.Sleep(TimeSpan.FromSeconds(60));
+}
+
 Console.Write("Enter the file path: ");
 
 string path = Console.ReadLine();
