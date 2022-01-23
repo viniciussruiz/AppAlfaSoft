@@ -20,7 +20,9 @@ Thread.Sleep(5000);
 
 void CallApi(string nome)
 {
-    
+    if (sw.StartAt != null)
+        Wait5Seconds();
+
     using var client = new HttpClient();
     client.BaseAddress = new Uri("https://api.bitbucket.org/2.0/users/");
     client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
@@ -52,6 +54,19 @@ void SaveLog(string response, string name)
     sw.Close();
     fs.Close();
 }
+
+void Wait5Seconds()
+{
+    var difference = (DateTime.Now - sw.StartAt);
+
+    if (difference.Value.TotalMilliseconds < 5000)
+    {
+        int Milliseconds = Convert.ToInt32(difference.Value.TotalMilliseconds);
+        Thread.Sleep(5000 - Milliseconds);
+    }
+}
+
+
 
 
 
